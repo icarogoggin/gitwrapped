@@ -61,7 +61,7 @@ export async function getWrapped(username: string, year = new Date().getUTCFullY
   if (cal.totalContributions === 0) throw new Error("NO_DATA");
 
   const edges = (user.repositories.nodes as any[])
-    .filter(r => r.pushedAt && new Date(r.pushedAt).getUTCFullYear() >= year - 1)
+    .filter(r => r.pushedAt && new Date(r.pushedAt).getUTCFullYear() === year)
     .flatMap(r => r.languages.edges.map((e: any) => ({ size: e.size, name: e.node.name, color: e.node.color })));
 
   const hours = await recentPushHours(login);

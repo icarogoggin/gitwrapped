@@ -19,6 +19,9 @@ const graphqlResp = {
           { size: 900, node: { name: "TypeScript", color: "#3178c6" } },
           { size: 100, node: { name: "CSS", color: "#563d7c" } },
         ] } },
+        { pushedAt: "2025-06-01T00:00:00Z", languages: { edges: [
+          { size: 5000, node: { name: "COBOL", color: "#000" } },
+        ] } },
       ] },
     },
   },
@@ -43,6 +46,7 @@ describe("getWrapped", () => {
     expect(d.username).toBe("icarogoggin");
     expect(d.totalContributions).toBe(3);
     expect(d.languages[0].name).toBe("TypeScript");
+    expect(d.languages.some(l => l.name === "COBOL")).toBe(false); // repo de 2025 fica fora do ano-alvo
     expect(d.busiestWeekday).toBe("Quarta");
     expect(d.nightOwl.vibe).toBe("madrugada"); // 2 pushes de madrugada
     expect(d.personality.label).toBeTruthy();
